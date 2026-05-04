@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bb52mit1jhsnq"]
+
+[ext_resource type="Script" uid="uid://bbv3rvj7kdmw4" path="res://Player.cs" id="1_ig7tw"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ig7tw"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ig7tw"]
+
+[node name="Main" type="Node3D" unique_id=564888900]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1074100207]
+use_collision = true
+size = Vector3(20, 1, 20)
+
+[node name="Player" type="CharacterBody3D" parent="." unique_id=1008641262]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5915833, 2.2283916, 0)
+script = ExtResource("1_ig7tw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=157521782]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+shape = SubResource("CapsuleShape3D_ig7tw")
+debug_color = Color(0, 0.6, 0.69411767, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player" unique_id=1581990673]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+mesh = SubResource("CapsuleMesh_ig7tw")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1656379657]
+transform = Transform3D(1, 0, 0, 0, 0.76604444, 0.6427876, 0, -0.6427876, 0.76604444, 0, 6.037, 10)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=785629203]
+transform = Transform3D(0.28903183, 0, -0.9573195, 0, 1, 0, 0.9573195, 0, 0.28903183, 0, 7.403763, 0)
