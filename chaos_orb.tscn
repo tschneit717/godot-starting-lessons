@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://7p1p5hq6avk2"]
+
+[ext_resource type="Script" uid="uid://b2y3glv2w43ek" path="res://ChaosOrb.cs" id="1_wl1x3"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cmdbg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_87is1"]
+albedo_color = Color(1, 1, 0.2, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_6fc26"]
+material = SubResource("StandardMaterial3D_87is1")
+
+[node name="ChaosOrb" type="Node3D" unique_id=2044684427]
+script = ExtResource("1_wl1x3")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1249975272]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=2131386224]
+shape = SubResource("SphereShape3D_cmdbg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D/CollisionShape3D" unique_id=386647486]
+mesh = SubResource("SphereMesh_6fc26")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -1,32 +1,53 @@
 [gd_scene format=3 uid="uid://bb52mit1jhsnq"]
 
-[ext_resource type="Script" uid="uid://bbv3rvj7kdmw4" path="res://Player.cs" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://7p1p5hq6avk2" path="res://chaos_orb.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://cr24y31r3rs81" path="res://player.tscn" id="2_h2yge"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ig7tw"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0xm2m"]
+noise_type = 2
+frequency = 0.917
+fractal_octaves = 6
+cellular_jitter = 0.0
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_ig7tw"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h2yge"]
+noise = SubResource("FastNoiseLite_0xm2m")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bvp3"]
+albedo_texture = SubResource("NoiseTexture2D_h2yge")
+uv1_triplanar_sharpness = 72.4454
+uv1_world_triplanar = true
+uv2_triplanar_sharpness = 7.7274704
 
 [node name="Main" type="Node3D" unique_id=564888900]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1074100207]
 use_collision = true
-size = Vector3(20, 1, 20)
-
-[node name="Player" type="CharacterBody3D" parent="." unique_id=1008641262]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5915833, 2.2283916, 0)
-script = ExtResource("1_ig7tw")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=157521782]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
-shape = SubResource("CapsuleShape3D_ig7tw")
-debug_color = Color(0, 0.6, 0.69411767, 1)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player" unique_id=1581990673]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
-mesh = SubResource("CapsuleMesh_ig7tw")
-
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1656379657]
-transform = Transform3D(1, 0, 0, 0, 0.76604444, 0.6427876, 0, -0.6427876, 0.76604444, 0, 6.037, 10)
+size = Vector3(78.59375, 1, 62.698242)
+material = SubResource("StandardMaterial3D_1bvp3")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=785629203]
-transform = Transform3D(0.28903183, 0, -0.9573195, 0, 1, 0, 0.9573195, 0, 0.28903183, 0, 7.403763, 0)
+transform = Transform3D(0.28903183, 0, -0.9573195, 0, 1, 0, 0.9573195, 0, 0.28903183, 0, 14.338654, -21.652271)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=168814901]
+transform = Transform3D(-0.05294384, -0.991895, 0.11550417, 0.36740103, 0.088205196, 0.9258706, -0.9285545, 0.091455474, 0.35975334, 0.31236267, 14.338654, 21.973475)
+
+[node name="ChaosOrb" parent="." unique_id=2044684427 instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 5)
+
+[node name="Player" parent="." unique_id=2103267749 instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4171486, 1.2, 0.26387072)
+
+[node name="ChaosOrb2" parent="." unique_id=878077642 instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8152227, 0.9999995, 1.8199861)
+
+[node name="ChaosOrb3" parent="." unique_id=1775231275 instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.395507, 0.9999995, -3.5064862)
+
+[node name="ChaosOrb4" parent="." unique_id=811640068 instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75125027, 0.9999995, -6.8153687)
+
+[node name="ChaosOrb5" parent="." unique_id=864547204 instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9576015, 0.9999995, -5.235072)
+
+[node name="ChaosOrb6" parent="." unique_id=377491827 instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.413189, 1, 4.6091175)
