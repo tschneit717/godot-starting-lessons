@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 public partial class Player : CharacterBody3D
 {
+	[Export] public float BaseSpeed = 5.0f; // Rename your initial speed
     [Export] public float Speed = 5.0f;
     [Export] public float RotationSpeed = 10.0f;
     [Export] public float JumpVelocity = 4.5f; // Added this back for your jump!
@@ -12,7 +13,7 @@ public partial class Player : CharacterBody3D
 	[Export] public float Acceleration = 10.0f; // Added missing Acceleration
 
 	[Export] public float MouseSensitivity = 0.002f;
-
+	public bool IsBuffed => Speed > BaseSpeed;
     public float gravity = ProjectSettings.GetSetting("physics/3d/default_gravity").AsSingle();
 
   	public override void _Ready()
@@ -98,6 +99,7 @@ public partial class Player : CharacterBody3D
 
 	public async Task ApplySpeedBuff(float amount, float duration)
 	{
+		 
 		// apply speed
 		Speed += amount;
 		GD.Print($"Buffed! Speed is now: {Speed}");

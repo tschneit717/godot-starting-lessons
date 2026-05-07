@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://7p1p5hq6avk2" path="res://chaos_orb.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://cr24y31r3rs81" path="res://player.tscn" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://rjqot4i7x24j" path="res://Hud.cs" id="3_h2yge"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_0xm2m"]
 noise_type = 2
@@ -51,3 +52,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9576015, 0.9999995, -5.235
 
 [node name="ChaosOrb6" parent="." unique_id=377491827 instance=ExtResource("2_0xm2m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.413189, 1, 4.6091175)
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1565731953]
+script = ExtResource("3_h2yge")
+
+[node name="Control" type="Control" parent="HUD" unique_id=983244337]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/Control" unique_id=1896553537]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Control/MarginContainer" unique_id=1101066910]
+layout_mode = 2
+
+[node name="ChaosLabel" type="Label" parent="HUD/Control/MarginContainer/VBoxContainer" unique_id=830023628]
+layout_mode = 2
+
+[node name="SpeedLabel" type="Label" parent="HUD/Control/MarginContainer/VBoxContainer" unique_id=2134109349]
+layout_mode = 2
