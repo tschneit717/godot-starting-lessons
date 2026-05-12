@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://7p1p5hq6avk2" path="res://chaos_orb.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://cr24y31r3rs81" path="res://player.tscn" id="2_h2yge"]
 [ext_resource type="Script" uid="uid://rjqot4i7x24j" path="res://Hud.cs" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://3pcgsmgrumqg" path="res://lava.tscn" id="4_1bvp3"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_0xm2m"]
 noise_type = 2
@@ -19,11 +20,15 @@ uv1_triplanar_sharpness = 72.4454
 uv1_world_triplanar = true
 uv2_triplanar_sharpness = 7.7274704
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bvp3"]
+bg_color = Color(1, 0, 0, 1)
+expand_margin_right = 100.0
+
 [node name="Main" type="Node3D" unique_id=564888900]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1074100207]
 use_collision = true
-size = Vector3(78.59375, 1, 62.698242)
+size = Vector3(50, 1, 50)
 material = SubResource("StandardMaterial3D_1bvp3")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=785629203]
@@ -81,3 +86,12 @@ layout_mode = 2
 
 [node name="SpeedLabel" type="Label" parent="HUD/Control/MarginContainer/VBoxContainer" unique_id=2134109349]
 layout_mode = 2
+
+[node name="HealthBar" type="ProgressBar" parent="HUD/Control/MarginContainer/VBoxContainer" unique_id=1330856014]
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_1bvp3")
+value = 100.0
+
+[node name="Lava" parent="." unique_id=1393684981 instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.106, -3.563)
+lavaDamage = 10.0

@@ -6,12 +6,14 @@ public partial class Hud : CanvasLayer
 
 	private Label _chaosLabel;
 	private Label _speedLabel;
+	private ProgressBar _healthBar;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		_chaosLabel = GetNode<Label>("Control/MarginContainer/VBoxContainer/ChaosLabel");
 		_speedLabel = GetNode<Label>("Control/MarginContainer/VBoxContainer/SpeedLabel");
+		_healthBar = GetNode<ProgressBar>("Control/MarginContainer/VBoxContainer/HealthBar");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,6 +33,9 @@ public partial class Hud : CanvasLayer
 			
 			// Use the new property we just made
 			_speedLabel.Modulate = player.IsBuffed ? Colors.Gold : Colors.White;
+
+			// ProgressBar uses a 0-100 scale by default
+	        _healthBar.Value = player.CurrentHealth;
 		}
 		else 
 		{
