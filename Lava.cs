@@ -20,7 +20,7 @@ public partial class Lava : Area3D
 		{
 			GD.Print("Player is in lava! Resetting them....");
 			
-			player.TakeDamage(lavaDamage, GlobalPosition);
+			player.TakeDamage(lavaDamage, GlobalPosition, null, 10.0f);
 
 			Vector3 bounceDir = (player.GlobalPosition - GlobalPosition).Normalized();
 

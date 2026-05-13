@@ -14,6 +14,7 @@ material = SubResource("StandardMaterial3D_87is1")
 script = ExtResource("1_wl1x3")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1249975272]
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=2131386224]
 shape = SubResource("SphereShape3D_cmdbg")

@@ -120,23 +120,34 @@ public partial class Player : CharacterBody3D
         GetTree().CallDeferred(SceneTree.MethodName.ReloadCurrentScene);
     }
 
-    public async Task TakeDamage(float amount, Vector3 hazardPosition)
+    public async Task TakeDamage(float amount, Vector3 hazardPosition, float? overrideKnockback = null, float? overrideVertical = null)
     {
-        if (_isImmune) return;
+       if (_isImmune) return;
 
         _isImmune = true;
         CurrentHealth -= amount;
-        GD.Print($"Ouch! Health: {CurrentHealth}");
 
-        // 1. Calculate Horizontal Launch Direction (Away from lava center)
+        // FIX: Fallback direction if you are perfectly overlapping the enemy
         Vector3 flatHazardPos = new Vector3(hazardPosition.X, GlobalPosition.Y, hazardPosition.Z);
-       	Vector3 pushDir = -Velocity.Normalized(); // Pushes exactly opposite of your current movement
-		if (pushDir == Vector3.Zero) pushDir = -Basis.Z; // Default to 'backwards' if standing still
-        // 2. Set the Launch Velocity 
-        Vector3 launchVelocity = pushDir * KnockbackForce;
-        launchVelocity.Y = VerticalForce; 
-        Velocity = launchVelocity;
+        Vector3 pushDir = (GlobalPosition - flatHazardPos).Normalized();
+        
+        if (pushDir.Length() < 0.1f) 
+        {
+            // If overlapping perfectly, push "backwards" relative to where player is facing
+            pushDir = -Basis.Z; 
+        }
 
+        float kForce = overrideKnockback ?? KnockbackForce;
+        float vForce = overrideVertical ?? VerticalForce;
+
+        // DIRECT INJECTION: We override velocity entirely
+        Vector3 launchVelocity = pushDir * kForce;
+        launchVelocity.Y = vForce; 
+        Velocity = launchVelocity;
+        
+        // Call MoveAndSlide immediately once to force the physics engine to register the new velocity
+        MoveAndSlide();
+        
         if (CurrentHealth <= 0)
         {
             Die();
