@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://rjqot4i7x24j" path="res://Hud.cs" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://3pcgsmgrumqg" path="res://lava.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://pmuadnupwba4" path="res://enemy.tscn" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://du3gkyejwf427" path="res://WaveSpawner.cs" id="6_7mycd"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_0xm2m"]
 noise_type = 2
@@ -135,3 +136,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, -17)
 
 [node name="ChaosOrb14" parent="." unique_id=2034009166 instance=ExtResource("2_0xm2m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1, -7)
+
+[node name="WaveSpawner" type="Node3D" parent="." unique_id=775804307]
+script = ExtResource("6_7mycd")
+EnemyScene = ExtResource("5_lquwl")
